@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tommylee.myapplication.Search_Activity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/applayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        >
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/search_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:weightSum="1"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <RelativeLayout
+                android:id="@+id/search_layout"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+              >
+
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="14dp"
+                    android:onClick="onChangeToSmart"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginRight="14dp"
+                    app:srcCompat="@drawable/smartsearch"
+                    />
+
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:onClick="onSupportNavigateUp2"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorPrimary"
+                    app:srcCompat="@drawable/back" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/search_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_toolbar"
+>
+
+            <AutoCompleteTextView
+                android:id="@+id/searchmain"
+                android:layout_width="match_parent"
+                android:drawableStart="@drawable/searchin2"
+                android:drawableLeft="@drawable/searchin2"
+                android:drawablePadding="10dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@drawable/round_button"
+                android:focusableInTouchMode="true"
+                android:hint="Search!"
+                android:imeOptions="actionGo"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="#aaaaaa"
+                />
+
+        </RelativeLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_search_" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.tommylee.myapplication.SmartScreen_Activity"
+    tools:showIn="@layout/activity_smart_screen_">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:text="選擇城市" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_below="@id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:theme="@style/ThemeSpinner"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rl"
+            android:layout_toEndOf="@id/rl"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/district"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:text="選擇地區" />
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_below="@id/district"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:theme="@style/ThemeSpinner"
+
+                />
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/cate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:text="種類選擇(最多可選3個)" />
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal" android:layout_width="match_parent"
+                    android:id="@+id/caterow"
+                    android:layout_below="@id/cate"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+
+
+                    <CheckBox
+                        android:id="@+id/cb0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                    <CheckBox
+                        android:id="@+id/cb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                    <CheckBox
+                        android:id="@+id/cb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal" android:layout_width="match_parent"
+                    android:id="@+id/caterow2"
+                    android:layout_below="@id/caterow"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <CheckBox
+                        android:id="@+id/cb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="哈哈哈哈"
+                        android:buttonTint="@color/colorAccent"
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                    <CheckBox
+                        android:id="@+id/cb6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                    <CheckBox
+                        android:id="@+id/cb7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorAccent"
+                        android:text="哈哈哈哈"
+
+                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categories"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:text="價錢範圍" />
+                <Spinner
+                    android:id="@+id/spinnerprice"
+                    android:layout_below="@id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:theme="@style/ThemeSpinner"
+
+                    />
+            </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl4"
+
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/categoriestext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/activity_vertical_margin"
+            android:text="評分排序" />
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/segmented2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/categoriestext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            segmentedgroup:sc_border_width="2dp"
+            segmentedgroup:sc_corner_radius="10dp"
+
+            segmentedgroup:sc_checked_text_color="@color/colorPrimary"
+            >
+
+            <RadioButton
+                android:id="@+id/button21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="無限制"
+                style="@style/RadioButton" />
+
+            <RadioButton
+                android:id="@+id/button22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="高至低"
+                style="@style/RadioButton" />
+            <RadioButton
+                android:id="@+id/button23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="低至高"
+                style="@style/RadioButton" />
+
+        </info.hoang8f.android.segmented.SegmentedGroup>
+    </RelativeLayout>
+            <Button
+                android:id="@+id/smartsearchsubmit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating"
+                android:background="#3CB371"
+                android:text="Button" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

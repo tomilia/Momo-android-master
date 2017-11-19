@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/Dots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewPager"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Firstrowbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Dots"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_btn_speak_now"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Secondrowbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Firstrowbutton"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_btn_speak_now"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="80dp"
+
+                        android:layout_height="80dp"
+                        android:drawableTop="@android:drawable/ic_dialog_email"
+                        android:text="推拿"
+                        android:textColor="#000" />
+
+
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/Firstrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Secondrowbutton"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+
+                    >
+
+
+                    <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp" />
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="特別推介"
+                        android:drawableLeft="@android:drawable/ic_menu_zoom"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="20sp"
+                        android:layout_above="@id/recycler_view" />
+
+                </FrameLayout>
+                <RelativeLayout
+                    android:id="@+id/card"
+                    android:gravity="bottom"
+                    android:layout_below="@id/Firstrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp">
+                    </android.support.v7.widget.RecyclerView>
+                    <TextView android:id="@android:id/empty" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="今期流行"
+                        android:drawableLeft="@android:drawable/ic_menu_zoom"
+                        android:textSize="20sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

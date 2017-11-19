@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.tommylee.myapplication.Search_Activity"
+    tools:showIn="@layout/activity_search_">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/table">
+
+        <TextView
+            android:id="@+id/hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="熱門①"
+            android:textColor="#FF8000"
+            android:textSize="20sp"/>
+        <com.adroitandroid.chipcloud.ChipCloud
+            android:id="@+id/chip_cloud"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/table"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/table2">
+
+        <TextView
+            android:id="@+id/recent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="最近搜尋"
+            android:textColor="#FF8000"
+            android:textSize="20sp"/>
+        <ListView
+            android:id="@+id/resultrecent"
+            android:layout_width="fill_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignLeft="@+id/textview"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignStart="@+id/textview"
+        android:layout_below="@+id/button"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="150dp" />
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="fill_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>
