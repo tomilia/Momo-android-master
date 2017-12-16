@@ -77,7 +77,8 @@ private String[] myDataset={"$100或以下","地區"};
         Display display= getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x/4;
+        int width = size.x;
+        Log.d("width",String.valueOf(size.y));
         final CheckBox[] checkbox = new CheckBox[lengthBox];
         final int[] count = {0};
         final int maxLimit=3;
@@ -108,7 +109,12 @@ private String[] myDataset={"$100或以下","地區"};
             int id = getResources().getIdentifier("cb"+i, "id", getPackageName());
             Log.d("truee",String.valueOf(id)+" "+String.valueOf(R.id.cb1));
             checkbox[i] = (CheckBox) findViewById(id);
-            checkbox[i].setTextSize(width/10);
+            float textwidth;
+            if(width<=576)textwidth=11.5f;
+            else if(width>576&&width<=1280)textwidth=13.5f;
+            else textwidth=16;
+
+            checkbox[i].setTextSize(TypedValue.COMPLEX_UNIT_SP,textwidth);
             checkbox[i].setOnCheckedChangeListener(checker);
         }
 
@@ -160,3 +166,8 @@ private String[] myDataset={"$100或以下","地區"};
         }
     }
 }
+
+
+
+
+

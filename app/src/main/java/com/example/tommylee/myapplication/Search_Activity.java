@@ -60,7 +60,7 @@ public class Search_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_);
+        setContentView(R.layout.activity_search);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.search_toolbar);
         setSupportActionBar(toolbar);
@@ -255,7 +255,7 @@ public void onBackPressed(){
                 OkHttpClient client = new OkHttpClient();
                 Request request;
                 OkHttpClient client1=client.newBuilder().build();
-                    request = new Request.Builder().url("http://192.168.1.241:5555/autocomplete?company="+sText[0]).build();
+                    request = new Request.Builder().url("http://123.203.71.211:5555/autocomplete?company="+sText[0]).build();
 
                 try {
 

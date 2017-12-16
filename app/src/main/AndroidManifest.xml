@@ -34,6 +34,10 @@
         <activity
             android:name=".SmartScreen_Activity"
             android:label="@string/title_activity_smart_screen_"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Result_Page_Activity"
+            android:label="@string/title_activity_result__page_"
             android:theme="@style/AppTheme"></activity>
     </application>
 

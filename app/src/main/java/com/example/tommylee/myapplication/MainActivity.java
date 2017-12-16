@@ -202,11 +202,11 @@ public class MainActivity extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 Request request;
                 if(id==0) {
-                   request = new Request.Builder().url("http://192.168.1.241:5555/autocomplete").build();
+                   request = new Request.Builder().url("http://123.203.71.211:5555/autocomplete").build();
                     Log.d("checksum1",String.valueOf(id));
                 }
                 else {
-                     request = new Request.Builder().url("http://192.168.1.241:5555/autocomplete?company=z").build();
+                     request = new Request.Builder().url("http://123.203.71.211:5555/autocomplete?company=z").build();
                     Log.d("checksum2",String.valueOf(id));
                 }
 

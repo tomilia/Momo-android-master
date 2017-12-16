@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-              >
+                >
 
 
                 <ImageButton
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/search_toolbar"
->
+            >
 
             <AutoCompleteTextView
                 android:id="@+id/searchmain"
