@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:descendantFocusability="blocksDescendants"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/list_avatar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/resultexampleimage" />
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp">
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorAccent"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:layout_alignParentTop="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/list_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_title"
+            android:layout_marginLeft="16dp"
+            android:textColor="#bbbbbb"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="14sp" />
+    <LinearLayout
+        android:id="@+id/starresult"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/list_desc"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true">
+        <View
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+
+        android:background="@drawable/star"/>
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:background="@drawable/star"/>
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:background="@drawable/star"/>
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:background="@drawable/star"/>
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:background="@drawable/star"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/priceresult"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/starresult"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true">
+    <TextView
+        android:id="@+id/list_price_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#aaaaaa"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text="人均消費 "
+        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/list_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF7F50"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:text="16"
+            android:textSize="22sp" />
+    </LinearLayout>
+</RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_gravity="bottom"
+            android:background="#000000"/>
+    </LinearLayout>
+
+</LinearLayout>

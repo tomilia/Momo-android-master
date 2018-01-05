@@ -13,13 +13,25 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/customratingstars</item>
+        <item name="android:indeterminateDrawable">@drawable/customratingstars</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:maxHeight">48dp</item>
+    </style>
     <style name="ThemeSpinner">
         <!-- Color when pressed -->
         <item name="colorAccent">#ffa000</item>
         <!-- Default color for the dropdown arrow and line -->
         <item name="colorControlNormal">#aaaaaa</item>
     </style>
+    <style name="CustomTabText" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyTabLayoutTextAppearance</item>
+    </style>
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">18sp</item>
 
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

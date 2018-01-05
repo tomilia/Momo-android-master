@@ -5,18 +5,18 @@ package com.example.tommylee.myapplication;
  */
 
 public class DataFetch {
-    private int id;
+    private String id;
+    private int averageprice;
     private String description,image_link;
-    public DataFetch(String description,String image_link){
+    public DataFetch(String description,String image_link,int averageprice,String... id){
+        this.id=id[0];
         this.description=description;
         //image_link=address
         this.image_link=image_link;
+        this.averageprice=averageprice;
     }
-    public int getId(){
+    public String getId(){
         return id;
-    }
-    public void setId(int id){
-        this.id=id;
     }
     public String getDescription(){
         return description;
@@ -29,5 +29,8 @@ public class DataFetch {
     }
     public void setImage_link(String image_link){
         this.image_link=image_link;
+    }
+    public int getAveragePrice(){
+        return averageprice;
     }
 }

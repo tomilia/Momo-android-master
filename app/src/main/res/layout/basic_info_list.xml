@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp"
+    android:descendantFocusability="blocksDescendants"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+<TextView
+    android:id="@+id/infokey"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/light_grey"
+    android:layout_marginLeft="20dp"
+
+    android:textSize="18sp" />
+    <TextView
+        android:id="@+id/infovalue"
+        android:layout_toRightOf="@id/infokey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_grey"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+
+        android:layout_marginRight="10dp"
+        android:id="@+id/detail_icon_hold2"/>
+</RelativeLayout>

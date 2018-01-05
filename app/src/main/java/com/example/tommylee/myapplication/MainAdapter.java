@@ -88,6 +88,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     viewHolder2.mImage.getLayoutParams().height=(int)(height/6);
 
                     viewHolder2.mRankIcon.setImageResource(R.drawable.medal1);
+                case 3:
+                    viewHolder2.mImage.getLayoutParams().height=(int)(height/6);
                     break;
             }
             // Set a random color for TextView background

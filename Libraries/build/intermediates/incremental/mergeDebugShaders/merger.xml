@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/tommylee/Downloads/Momo-android-master/Libraries/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/tommylee/Downloads/Momo-android-master/Libraries/src/debug/shaders"/></dataSet></merger>

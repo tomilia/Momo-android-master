@@ -26,17 +26,6 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <ImageButton
-                android:id="@+id/smartchoice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                app:srcCompat="@drawable/choices" />
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -54,41 +43,53 @@
                 android:textSize="24dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <ImageButton
-                android:id="@+id/mapcaller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:layout_alignTop="@+id/textView3"
-                android:layout_gravity="right"
-                android:background="#FFFFFF"
-                app:srcCompat="@drawable/mapcontain" />
+
 
         </android.support.v7.widget.Toolbar>
 
 
-        <RelativeLayout
-            android:id="@+id/search_layout"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:background="@color/colorPrimary">
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:showDividers="middle">
 
-            <ImageButton
-                android:id="@+id/search_bar"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/mapcaller"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#229922"
-                android:onClick="SearchBtnGo"
-                android:background="@color/colorPrimary"
-                android:typeface="sans"
-                android:padding="10dp"
-                app:srcCompat="@drawable/searchbar" />
+                android:layout_weight="0.5"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/route"
+                android:paddingLeft="20dp"
+                android:text="地圖模式"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="@dimen/activity_horizontal_margin" />
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="0.5dp"
+                android:layout_height="20dp"
 
-        </RelativeLayout>
+                android:background="@color/dark_grey" />
+            <Button
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/searchin2"
+                android:paddingLeft="20dp"
+                android:onClick="SearchBtnGo"
+                android:text="店舖搜尋"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/activity_horizontal_margin" />
+
+
+        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
    <include layout="@layout/content_main"/>

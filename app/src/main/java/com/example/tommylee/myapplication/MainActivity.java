@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,16 +46,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.LayoutManager mLayoutManager2;
     private RecyclerView mRecyclerView2;
-    private ImageButton mapcaller;
     private ImageButton smartchoice;
-    private ImageButton searchbarbutton;
     ViewPager viewPager;
     private ArrayList<DataFetch> mDataset;
     private ArrayList<DataFetch> mDataset2;
     LinearLayout dots;
     private int dotscount;
     private ImageView[] dotsview;
-    public static int CHECK_SUM=0;
+    private Button mapcaller,searchbarbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
             mAdapter2 = new MainAdapter(this, mDataset2, 1);
             mRecyclerView2.setAdapter(mAdapter2);
 
-            mapcaller = (ImageButton) findViewById(R.id.mapcaller);
+            mapcaller = (Button) findViewById(R.id.mapcaller);
+
             mapcaller.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
@@ -138,15 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            smartchoice = (ImageButton) findViewById(R.id.smartchoice);
-            smartchoice.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                    dialog.setMessage("基本功能");
-                    dialog.show();
-                }
-            });
-            searchbarbutton = findViewById(R.id.search_bar);
+            searchbarbutton = (Button)findViewById(R.id.search_bar);
+
             searchbarbutton.setOnClickListener(new ImageButton.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), Search_Activity.class);
@@ -220,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
                         String name = jsonobject.getString("company");
                         String url = jsonobject.getString("address");
-                        DataFetch fetch = new DataFetch(jsonobject.getString("company"), jsonobject.getString("address"));
+                        DataFetch fetch = new DataFetch(jsonobject.getString("company"), jsonobject.getString("address"),jsonobject.getInt("price"),jsonobject.getString("_id"));
                         if(id==0)
                         mDataset.add(fetch);
                         else
@@ -228,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return null;
                 } catch (Exception e) {
-                    Log.d("showa","FUCK");
                     e.printStackTrace();
                 }
             return null;

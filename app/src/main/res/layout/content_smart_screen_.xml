@@ -4,161 +4,224 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.tommylee.myapplication.SmartScreen_Activity"
     tools:showIn="@layout/activity_smart_screen_">
+
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-        <RelativeLayout
-            android:id="@+id/rl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp">
-            <TextView
-                android:id="@+id/city"
+            <RelativeLayout
+                android:id="@+id/rl0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/activity_vertical_margin"
-                android:text="選擇城市" />
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_below="@id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:theme="@style/ThemeSpinner"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/keywordsearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/activity_vertical_margin"
+                    android:text="關鍵字"
+                    android:textColor="#0D745C"/>
 
-                />
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/searchretrieve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:background="@drawable/smartsc_keyword"
+
+                    android:drawableStart="@drawable/searchin2"
+                    android:drawableLeft="@drawable/searchin2"
+                    android:drawablePadding="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:paddingBottom="5dip"
+                    android:singleLine="true"
+
+                    android:layout_below="@+id/keywordsearch" />
+
+            </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rl2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/rl"
-            android:layout_toEndOf="@id/rl"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp">
+
+            android:layout_below="@id/rl0"
+
+
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/district"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/activity_vertical_margin"
-                android:text="選擇地區" />
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_below="@id/district"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:theme="@style/ThemeSpinner"
+                android:layout_marginLeft="20dp"
+                android:text="選擇地區"
+                android:textColor="#0D745C"/>
 
-                />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/locationrecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/district" />
+
         </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl"
-                android:layout_marginTop="30dp">
+                android:layout_below="@id/rl2"
+                android:layout_marginTop="20dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/cate">
+                    <Button
+                    android:id="@+id/catereset"
+                    android:layout_width="32dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:background="#00000000"
+                    android:text="重設" />
                 <TextView
                     android:id="@+id/cate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/activity_vertical_margin"
-                    android:text="種類選擇(最多可選3個)" />
+                    android:layout_marginLeft="20dp"
+                    android:text="種類選擇(最多可選3個)"
+                    android:textColor="#0D745C"/>
+                </RelativeLayout>
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:orientation="horizontal" android:layout_width="match_parent"
                     android:id="@+id/caterow"
                     android:layout_below="@id/cate"
+                    android:layout_marginTop="20dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     >
+                <Button
+                    android:id="@+id/catbut0"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
 
-
-                    <CheckBox
-                        android:id="@+id/cb0"
-                        android:layout_width="wrap_content"
+                    android:text="haha"
+                    android:background="@drawable/rectan_block_button"/>
+                    <Button
+                        android:id="@+id/catbut1"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
 
-
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        />
-
-                    <CheckBox
-                        android:id="@+id/cb1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
-
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
-                    <CheckBox
-                        android:id="@+id/cb2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
-
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
-                    <CheckBox
-                        android:id="@+id/cb3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
-
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
                 </LinearLayout>
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:orientation="horizontal" android:layout_width="match_parent"
-                    android:id="@+id/caterow2"
-                    android:layout_below="@id/caterow"
+                    android:id="@+id/catrow2"
+                    android:layout_below="@+id/caterow"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-
-                    <CheckBox
-                        android:id="@+id/cb4"
-                        android:layout_width="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+                    <Button
+                        android:id="@+id/catbut2"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="哈哈哈哈"
-                        android:buttonTint="@color/colorAccent"
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
 
-                    <CheckBox
-                        android:id="@+id/cb5"
-                        android:layout_width="wrap_content"
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
+                    <Button
+                        android:id="@+id/catbut3"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
 
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
-                    <CheckBox
-                        android:id="@+id/cb6"
-                        android:layout_width="wrap_content"
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal" android:layout_width="match_parent"
+                    android:id="@+id/catrow3"
+                    android:layout_below="@+id/catrow2"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+                    <Button
+                        android:id="@+id/catbut4"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
 
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
-                    <CheckBox
-                        android:id="@+id/cb7"
-                        android:layout_width="wrap_content"
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
+                    <Button
+                        android:id="@+id/catbut5"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorAccent"
-                        android:text="哈哈哈哈"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
 
-                        style="@android:style/TextAppearance.DeviceDefault.Medium"/>
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal" android:layout_width="match_parent"
+                    android:id="@+id/catrow4"
+                    android:layout_below="@+id/catrow3"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+                    <Button
+                        android:layout_width="150dp"
+                        android:id="@+id/catbut6"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
+                    <Button
+                        android:id="@+id/catbut7"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+
+                        android:text="haha"
+                        android:background="@drawable/rectan_block_button"/>
                 </LinearLayout>
 
             </RelativeLayout>
@@ -167,22 +230,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/categories"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+
+                >
                 <TextView
                     android:id="@+id/price"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#0D745C"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/activity_vertical_margin"
                     android:text="價錢範圍" />
-                <Spinner
-                    android:id="@+id/spinnerprice"
+                <LinearLayout
                     android:layout_below="@id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                    android:theme="@style/ThemeSpinner"
-
-                    />
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="20dp">
+                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                    android:id="@+id/rangeSeekbar1"
+                    android:layout_below="@id/price"
+                    app:bar_color="#aaaaaa"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:right_thumb_image="@drawable/rightarrow"
+                    app:left_thumb_image="@drawable/leftarrow"
+                    app:bar_highlight_color="@color/colorAccent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                </LinearLayout>
             </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rating"
@@ -191,63 +267,104 @@
         android:layout_below="@id/rl4"
 
         android:layout_marginTop="30dp">
-
+<RelativeLayout
+    android:id="@+id/categoriestext"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+>
         <TextView
-            android:id="@+id/categoriestext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/activity_vertical_margin"
-            android:text="評分排序" />
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#0D745C"
+            android:text="選擇評分" />
 
-        <info.hoang8f.android.segmented.SegmentedGroup
-            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/segmented2"
-            android:layout_centerHorizontal="true"
+    <Button
+        android:id="@+id/ratereset"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:background="#00000000"
+        android:text="重設" />
+</RelativeLayout>
+        <LinearLayout
             android:layout_below="@id/categoriestext"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
-            segmentedgroup:sc_border_width="2dp"
-            segmentedgroup:sc_corner_radius="10dp"
-
-            segmentedgroup:sc_checked_text_color="@color/colorPrimary"
-            >
-
-            <RadioButton
-                android:id="@+id/button21"
-                android:layout_width="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+           >
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/categorieslabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="已選評分"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:textColor="#aaaaaa"/>
+    <TextView
+        android:layout_toRightOf="@id/categorieslabel"
+        android:id="@+id/categoriesrate"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:text="不限"/>
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/ratingbar"
+                android:layout_below="@id/categorieslabel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="無限制"
-                style="@style/RadioButton" />
-
-            <RadioButton
-                android:id="@+id/button22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="高至低"
-                style="@style/RadioButton" />
-            <RadioButton
-                android:id="@+id/button23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="低至高"
-                style="@style/RadioButton" />
-
-        </info.hoang8f.android.segmented.SegmentedGroup>
+                android:layout_marginLeft="-3dp"
+                android:layout_marginRight="-3dp"
+                app:mrb_progressTint="@color/starYellow"
+                app:mrb_secondaryProgressTint="@color/starYellow"
+                android:stepSize="0.1"
+                style="@style/Widget.MaterialRatingBar.RatingBar" />
+</RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
-            <Button
-                android:id="@+id/smartsearchsubmit"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_below="@id/rating"
-                android:background="#3CB371"
-                android:text="Button" />
+                android:layout_centerInParent="true"
+                >
+                <Button
+                    android:id="@+id/smartreset"
+                    android:textColor="#2C8EB8"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/oval_reset"
+                    android:text="重設" />
+                <Button
+                    android:id="@+id/smartsearchsubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/oval_submit"
+                    android:textSize="18sp"
+                    android:text="開始搜尋"
+                    android:textColor="@color/colorPrimary" />
 
+            </LinearLayout>
         </RelativeLayout>
 
     </ScrollView>

@@ -1,0 +1,45 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tommylee.myapplication.detail.tabbed.PriceSectionTab">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Button" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button2"
+        android:text="Button" />
+    <Button
+    android:id="@+id/button3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_below="@id/button1"
+    android:text="Button" />
+    <Button
+    android:id="@+id/button4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_below="@id/button3"
+    android:text="Button" />
+    <Button
+    android:id="@+id/button5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_below="@id/button4"
+    android:text="Button" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/dark_grey"
+        android:text="@string/hello_blank_fragment" />
+
+</RelativeLayout>

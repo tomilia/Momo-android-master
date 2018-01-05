@@ -3,23 +3,21 @@ package com.example.tommylee.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,14 +26,13 @@ import android.widget.TextView;
 
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
+import com.example.tommylee.myapplication.detail.Detail_Activity;
 import com.orhanobut.hawk.Hawk;
-import com.orhanobut.hawk.HawkBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -46,6 +43,7 @@ public class Search_Activity extends AppCompatActivity {
     private SharedPreferences savedstring;
     private static final String inputstring="KEYWORD";
     private ListView lv;
+    Uri.Builder builder = new Uri.Builder();
     private ArrayList<String> recent=new ArrayList<String>();
     private LinearLayout layout;
     private LinearLayout layout2;
@@ -145,12 +143,18 @@ Log.d("mardd",a+" "+ recent.get(a));
             public boolean onEditorAction(TextView v, int actionId,
                                           KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_GO&&!edit.getText().toString().equals("")) {
-                    Log.d("spending",edit.getText().toString());
+
                     recent.add((int)(Hawk.count()),edit.getText().toString());
                     Hawk.put(String.valueOf((int)Hawk.count()),edit.getText().toString());
                     for(int x=0;x<Hawk.count();x++)
                         Log.d("xmen",x+" "+ Hawk.get(String.valueOf(x)).toString());
                     Log.d("spalachi",String.valueOf(Hawk.count())+" "+String.valueOf(recent.size()));
+
+                    Intent intent = new Intent(getApplicationContext(), Result_Page_Activity.class);
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                    intent.putExtra("url",uriBuilder(edit.getText().toString(),0));
+                    startActivity(intent);
               return true;
                 }
                 return false;
@@ -204,7 +208,12 @@ Log.d("mardd",a+" "+ recent.get(a));
 
         lv.setOnItemClickListener(new ListView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Log.d("scaoc",String.valueOf(productResults.get(position).getDescription()));
+                Intent intent = new Intent(v.getContext(), Detail_Activity.class);
+                intent.putExtra("id",productResults.get(position).getId());
+                intent.putExtra("name",productResults.get(position).getDescription());
+                intent.putExtra("district",productResults.get(position).getImage_link());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                startActivity(intent);
 
             }
         });
@@ -239,7 +248,18 @@ public void onBackPressed(){
         onBackPressed();
 
     }
-    class myTask extends AsyncTask<String, Void, String>{
+    private String uriBuilder(String buildpath,int querytype) {
+        builder.clearQuery();
+        switch (querytype) {
+            case 0:builder.appendQueryParameter("company", buildpath);
+                break;
+            case 1:builder.appendQueryParameter("location", buildpath);
+                break;
+        }
+        String myUrl = builder.build().toString();
+        return myUrl;
+    }
+    public class myTask extends AsyncTask<String, Void, String>{
             JSONObject jObject;
             JSONArray searchList;
             String URL;
@@ -260,7 +280,6 @@ public void onBackPressed(){
                 try {
 
                     Response response = client1.newCall(request).execute();
-                    if(lv.getCount()!=0&&!hotsearch)
                     productResults.clear();
                     JSONArray jsonarray = new JSONArray(response.body().string());
                     for (int i = 0; i < jsonarray.length(); i++) {
@@ -268,8 +287,10 @@ public void onBackPressed(){
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
                         String name = jsonobject.getString("company");
                         String url = jsonobject.getString("address");
-                        Log.d("jsonn",sText[0]+" "+name+" "+url);
-                        DataFetch fetch = new DataFetch(name,url);
+                        int averageprice=jsonobject.getInt("price");
+                        String Id=jsonobject.getString("_id");
+                        Log.d("jsonn",sText[0]+" "+name+" "+Id);
+                        DataFetch fetch = new DataFetch(name,url,averageprice,Id);
 
 
                         productResults.add(fetch);

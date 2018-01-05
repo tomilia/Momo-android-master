@@ -1,0 +1,136 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/colorPrimary"
+    tools:context="com.example.tommylee.myapplication.detail.BasicInfoFrag">
+
+    <!-- TODO: Update blank fragment layout -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/photoslide"
+        android:orientation="horizontal"
+        >
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/basicinfo"
+        android:orientation="horizontal"
+        android:layout_weight="0.2"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/basicgreen"
+            android:background="@color/colorAccent"
+            >
+
+        <TextView
+            android:id="@+id/cname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"/>
+        <LinearLayout
+            android:id="@+id/starresult2"
+            android:layout_below="@id/cname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+
+          >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="評分："
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:background="@drawable/star"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:background="@drawable/star"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:background="@drawable/star"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:background="@drawable/star"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:background="@drawable/star"/>
+
+        </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="0.3"
+    android:orientation="horizontal">
+        <android.support.v7.widget.RecyclerView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/multi_info_recycler">
+
+
+        </android.support.v7.widget.RecyclerView>
+</LinearLayout>
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/DotsDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/photoslide"
+        android:orientation="horizontal"
+       android:paddingBottom="20dp"
+        app:layout_anchorGravity="bottom|center">
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@android:drawable/btn_star_big_on"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/photoslide"
+        app:layout_anchorGravity="bottom|right|end" />
+
+</android.support.design.widget.CoordinatorLayout>

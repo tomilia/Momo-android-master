@@ -1,15 +1,23 @@
 package com.example.tommylee.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
-import android.media.Image;
+
+import org.apache.http.client.utils.URIBuilder;
+
+import android.net.Uri;
+import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.StaticLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -17,28 +25,50 @@ import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adroitandroid.chipcloud.ChipCloud;
+import com.adroitandroid.chipcloud.ChipListener;
+import com.example.tommylee.myapplication.expandrecyclerview.MultiCheckGenreAdapter;
+
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 
+import static com.example.tommylee.myapplication.expandrecyclerview.GenreDataFactory.makeMultiCheckGenres;
+
 
 public class SmartScreen_Activity extends AppCompatActivity {
-    ListView Location;
-    ArrayList<String> productResults = new ArrayList<String>();
-    private RecyclerView mRecyclerView;
+    private List<String> selectedArray=new ArrayList<String>();
+    Uri.Builder builder = new Uri.Builder();
+    private List<String> categoriesArray=new ArrayList<String>();
     private int lengthBox = 8;
+    private Button[] btn = new Button[8];
+    private Button btn_unfocus;
+    private int[] btn_id = {R.id.catbut0,R.id.catbut1,R.id.catbut2,R.id.catbut3,R.id.catbut4,R.id.catbut5,R.id.catbut6,R.id.catbut7};
+    private MultiCheckGenreAdapter adapter;
     private smartsearchAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 private String[] myDataset={"$100或以下","地區"};
-    Spinner spinner;
     Spinner spinner2;
     ArrayAdapter<CharSequence> distirctList;
     @Override
@@ -49,78 +79,161 @@ private String[] myDataset={"$100或以下","地區"};
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        spinner = (Spinner)findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> cityList = ArrayAdapter.createFromResource(SmartScreen_Activity.this,
-                R.array.lunch,
-                R.layout.selection_box_child);
+        builder.clearQuery();
+        String keyfromresult;
+        builder.scheme("http")
+                .authority("172.26.5.155")
+                .appendPath("autocomplete");
+        final TextView keyword=(TextView)findViewById(R.id.searchretrieve);
+        try {
+             keyfromresult= getIntent().getExtras().getString("keyword");
+            keyword.setText(keyfromresult);
+        }
+        catch(NullPointerException e)
+        {
 
-        spinner.setAdapter(cityList);
+        }
+        Button catereset=(Button)findViewById(R.id.catereset);
+        //set something
+        for(int i = 0; i < btn.length; i++){
+            btn[i] = (Button) findViewById(btn_id[i]);
+            final int btnct=i;
+            btn[i].setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    if(btn[btnct].isHovered())
+                    {
 
-        spinner.setOnItemSelectedListener(new SpinnerActivity());
-        spinner2 = (Spinner)findViewById(R.id.spinner2);
+                        btn[btnct].setHovered(true);
+                    }
+                    if(btn[btnct].isSelected()){
+                        btn[btnct].setTextColor(getResources().getColor(R.color.dark_grey));
+                        btn[btnct].setSelected(false);
+                        categoriesArray.remove(btn[btnct].getText().toString());
+                    }
+                    if(btn[btnct].isPressed()){
+                        btn[btnct].setPressed(true);
+                        btn[btnct].setHovered(true);
+                        btn[btnct].setSelected(true);
+                        btn[btnct].setTextColor(getResources().getColor(R.color.colorPrimary));
+                        categoriesArray.add(btn[btnct].getText().toString());
+                    }
 
-        distirctList = ArrayAdapter.createFromResource(SmartScreen_Activity.this,
-                R.array.az,
-                R.layout.selection_box_child);
-        spinner2.setAdapter(distirctList);
-        SegmentedGroup segmented4 = (SegmentedGroup)findViewById(R.id.segmented2);
-        segmented4.setTintColor(0xFF229922);
-        segmented4.cancelLongPress();
 
-        segmented4.check(R.id.button21);
+                }
+            });
+        }
 
-        Spinner mySpinner = (Spinner)findViewById(R.id.spinnerprice);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.selection_box, R.id.weekofday, myDataset);
-        mySpinner.setAdapter(adapter);
+
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.locationrecycler);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        adapter = new MultiCheckGenreAdapter(makeMultiCheckGenres());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(   new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(adapter);
+
+
+
+
+
         DisplayMetrics metrics = new DisplayMetrics();
         Display display= getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x;
-        Log.d("width",String.valueOf(size.y));
         final CheckBox[] checkbox = new CheckBox[lengthBox];
         final int[] count = {0};
         final int maxLimit=3;
+
         CompoundButton.OnCheckedChangeListener checker = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean b) {
                 if (count[0] == maxLimit && b) {
                     cb.setChecked(false);
+
                     Toast.makeText(getApplicationContext(),
                             "Limit reached!!!", Toast.LENGTH_SHORT).show();
                 } else if (b) {
 
                     count[0]++;
-                    CharSequence myCheck = checkbox[count[0]].getText();
+                    categoriesArray.add(cb.getText().toString());
+
+                    CharSequence myCheck = cb.getText();
                     Toast.makeText(getApplicationContext(),
                             myCheck + " checked!",
                             Toast.LENGTH_SHORT)
                             .show();
                 } else if (!b) {
+                    categoriesArray.remove(cb.getText().toString());
                     count[0]--;
                 }
             }
 
 
         };
-        for(int i = 0; i < lengthBox; i++) {
 
-            int id = getResources().getIdentifier("cb"+i, "id", getPackageName());
-            Log.d("truee",String.valueOf(id)+" "+String.valueOf(R.id.cb1));
-            checkbox[i] = (CheckBox) findViewById(id);
-            float textwidth;
-            if(width<=576)textwidth=11.5f;
-            else if(width>576&&width<=1280)textwidth=13.5f;
-            else textwidth=16;
+        final RatingBar rating=(RatingBar)findViewById(R.id.ratingbar);
+        final TextView rate=(TextView)findViewById(R.id.categoriesrate);
+                rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating,
+                                                boolean fromUser) {
+                        if (fromUser) {
+                            int r = (int) (rating + 0.5f);
+                            ratingBar.setRating(r);
+                            if(r==0)
+                            {
+                                rate.setText("不限");
+                            }
+                            else
+                            rate.setText(String.valueOf(r)+"星");
+                        }
+                }});
 
-            checkbox[i].setTextSize(TypedValue.COMPLEX_UNIT_SP,textwidth);
-            checkbox[i].setOnCheckedChangeListener(checker);
-        }
+        Button submit=findViewById(R.id.smartsearchsubmit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.clearQuery();
+                if(!"".equals(keyword.getText().toString()))
+               builder.appendQueryParameter("company",keyword.getText().toString());
+                Iterator x=selectedArray.listIterator(0);
+                while (x.hasNext()) {
+                    builder.appendQueryParameter("location",x.next().toString());
+                }
+                Iterator y=categoriesArray.listIterator(0);
+                while (y.hasNext()) {
+                    builder.appendQueryParameter("categories",y.next().toString());
+                }
+                Log.d("msgg",builder.toString());
+                Intent intent = new Intent(getApplicationContext(), Result_Page_Activity.class);
+                try {
+                    intent.putExtra("url", "?" + builder.toString().split("\\?")[1]);
 
+                }
+                catch(ArrayIndexOutOfBoundsException e){
+                    intent.putExtra("url", "");
+                }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                startActivity(intent);
+                Log.d("msgg",builder.toString());
 
-        Log.d("avc",String.valueOf(width));
+            }
 
+        });
+        Button ratereset=(Button)findViewById(R.id.ratereset);
+        ratereset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Reset
+
+                rating.setRating((float)0.0);
+                rate.setText("不限");
+            }
+        });
         ImageButton back=(ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,11 +246,41 @@ private String[] myDataset={"$100或以下","地區"};
 
     }
 
-
         @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    private URL uriBuilder(String buildpath,int querytype) {
+
+       switch (querytype) {
+           case 0:builder.appendQueryParameter("company", buildpath);
+           break;
+           case 1:builder.appendQueryParameter("location", buildpath);
+           break;
+       }
+        String myUrl = builder.build().toString();
+       URL url;
+
+       try{
+           url=new URL(myUrl);
+           Log.d("msgg",url.toString());
+           return url;
+       }
+       catch (MalformedURLException e){
+            return null;
+       }
+
+    }
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        adapter.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        adapter.onRestoreInstanceState(savedInstanceState);
     }
     public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
