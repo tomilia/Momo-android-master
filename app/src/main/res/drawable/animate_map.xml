@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:drawable="@drawable/maplocation2" android:duration="100" />
+    <item android:drawable="@drawable/maplocation3" android:duration="100" />
+    <item android:drawable="@drawable/maplocation4" android:duration="100" />
+    <item android:drawable="@drawable/maplocation5" android:duration="100" />
+    <item android:drawable="@drawable/maplocation6" android:duration="100" />
+    <item android:drawable="@drawable/maplocation7" android:duration="100" />
+    <item android:drawable="@drawable/maplocation8" android:duration="100" />
+    <item android:drawable="@drawable/maplocation9" android:duration="100" />
+    <item android:drawable="@drawable/maplocation10" android:duration="100" />
+    <item android:drawable="@drawable/maplocation11" android:duration="100" />
+    <item android:drawable="@drawable/maplocation12" android:duration="100" />
+
+</animation-list>

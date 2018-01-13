@@ -51,5 +51,6 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_detailpage_activity">detailpage_activity</string>
     <string name="title_activity_detail_">Detail_Activity</string>
+    <string name="title_activity_setting">SettingActivity</string>
 </resources>
 

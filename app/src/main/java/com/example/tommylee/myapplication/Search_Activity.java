@@ -1,5 +1,6 @@
 package com.example.tommylee.myapplication;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -14,8 +15,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -23,9 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.adroitandroid.chipcloud.ChipCloud;
-import com.adroitandroid.chipcloud.ChipListener;
 import com.example.tommylee.myapplication.detail.Detail_Activity;
 import com.orhanobut.hawk.Hawk;
 
@@ -34,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import me.gujun.android.taggroup.TagGroup;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -66,6 +66,9 @@ public class Search_Activity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         lv = (ListView) findViewById(R.id.list_view);
+        LayoutInflater myinflater = getLayoutInflater();
+        ViewGroup myHeader = (ViewGroup)myinflater.inflate(R.layout.listviewheaderlayout, lv, false);
+        lv.addHeaderView(myHeader, null, false);
         Hawk.init(this).build();
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
@@ -76,37 +79,12 @@ public class Search_Activity extends AppCompatActivity {
 
         while (waitAsyc){Log.d("","");}
         String[] temp=new String[productResults.size()];
-        for(int i=0;i<productResults.size();i++)
-            temp[i]=productResults.get(i).getDescription();
-        ChipCloud chipCloud = (ChipCloud) findViewById(R.id.chip_cloud);
+        for(int i=0;i<productResults.size();i++) {
+            temp[i] = productResults.get(i).getDescription();
 
-        new ChipCloud.Configure()
-                .chipCloud(chipCloud)
-                .selectedColor(Color.parseColor("#18862d"))
-                .selectedFontColor(Color.parseColor("#ffffff"))
-                .deselectedColor(Color.parseColor("#3cb371"))
-                .deselectedFontColor(Color.parseColor("#fffffe"))
-                .selectTransitionMS(0)
-                .deselectTransitionMS(0)
-                .labels(temp)
-                .mode(ChipCloud.Mode.SINGLE)
-                .allCaps(false)
-                .gravity(ChipCloud.Gravity.LEFT)
-                .textSize(((int)(getResources().getDimensionPixelSize(R.dimen.default_textsize)*1.2)))
-                .verticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing))
-                .minHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.min_horizontal_spacing))
-                .chipListener(new ChipListener() {
-                    @Override
-                    public void chipSelected(int index) {
-                        //...
-                        Log.d("chip",String.valueOf(index));
-                    }
-                    @Override
-                    public void chipDeselected(int index) {
-                        //...
-                    }
-                })
-                .build();
+        }TagGroup mTagGroup = (TagGroup) findViewById(R.id.tag_group);
+        mTagGroup.setTags(temp);
+
 
         layout2= (LinearLayout) findViewById(R.id.table2);//Can also be done in xml by android:orientation="vertical"
 
@@ -311,6 +289,7 @@ public void onBackPressed(){
             Log.d("montyx",String.valueOf(hotsearch));
 
             if(!hotsearch) {
+
                 lv.setAdapter(new SearchResultAdapter(Search_Activity.this, productResults));
 
                 spinner.setVisibility(View.GONE);

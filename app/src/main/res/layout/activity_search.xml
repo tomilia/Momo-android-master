@@ -33,19 +33,29 @@
                 >
 
 
-                <ImageButton
+                <Button
+                    android:id="@+id/problem"
+                    android:background="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginEnd="14dp"
+                    android:layout_alignParentTop="true"
+                    android:bottomRightRadius="5dp"
+                    android:bottomLeftRadius="5dp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="2dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/smartsearchbutton"
+                    android:drawableLeft="@drawable/smartsearchbutton"
+                    android:layout_marginRight="12dp"
+                    android:text="智慧搜尋"
                     android:onClick="onChangeToSmart"
-                    android:background="@color/colorPrimary"
-                    android:layout_marginRight="14dp"
-                    app:srcCompat="@drawable/smartsearch"
-                    />
-
+                    android:textColor="#39b275"
+                    android:textSize="15sp" />
                 <ImageButton
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
@@ -70,15 +80,14 @@
             <AutoCompleteTextView
                 android:id="@+id/searchmain"
                 android:layout_width="match_parent"
-                android:drawableStart="@drawable/searchin2"
-                android:drawableLeft="@drawable/searchin2"
                 android:drawablePadding="10dp"
                 android:layout_height="45dp"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@drawable/round_button"
                 android:focusableInTouchMode="true"
-                android:hint="Search!"
+                android:hint="搜尋店舖／地址"
+                android:textColorHint="@color/dark_grey"
                 android:imeOptions="actionGo"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"

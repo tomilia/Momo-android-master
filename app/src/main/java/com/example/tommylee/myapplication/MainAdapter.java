@@ -36,7 +36,6 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,int ViewType){
         View v;
-            Log.d("cheess",String.valueOf(ViewType));
             if(ViewType ==ITEM_TYPE_ROW)
             {
                 v= LayoutInflater.from(parent.getContext()).inflate(R.layout.row,parent,false);

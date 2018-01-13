@@ -19,7 +19,7 @@ import android.util.Log;
 public class viewpager extends PagerAdapter{
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer[] images={R.drawable.colo,R.drawable.colo,R.drawable.colo};
+    private Integer[] images={R.drawable.colo2,R.drawable.colo,R.drawable.colo};
     public viewpager(Context context){
         this.context=context;
     }

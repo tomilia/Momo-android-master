@@ -12,7 +12,7 @@
     android:id="@+id/infokey"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/light_grey"
+    android:textColor="@color/lightGrey"
     android:layout_marginLeft="20dp"
 
     android:textSize="18sp" />

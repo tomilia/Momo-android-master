@@ -1,6 +1,7 @@
 package com.example.tommylee.myapplication;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -22,7 +23,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -36,10 +41,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.adroitandroid.chipcloud.ChipCloud;
-import com.adroitandroid.chipcloud.ChipListener;
 import com.example.tommylee.myapplication.expandrecyclerview.MultiCheckGenreAdapter;
+import com.thoughtbot.expandablecheckrecyclerview.listeners.OnCheckChildClickListener;
+import com.thoughtbot.expandablecheckrecyclerview.models.CheckedExpandableGroup;
+import com.thoughtbot.expandablerecyclerview.listeners.GroupExpandCollapseListener;
+import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -67,8 +73,8 @@ public class SmartScreen_Activity extends AppCompatActivity {
     private int[] btn_id = {R.id.catbut0,R.id.catbut1,R.id.catbut2,R.id.catbut3,R.id.catbut4,R.id.catbut5,R.id.catbut6,R.id.catbut7};
     private MultiCheckGenreAdapter adapter;
     private smartsearchAdapter mAdapter;
+    RecyclerView recyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-private String[] myDataset={"$100或以下","地區"};
     Spinner spinner2;
     ArrayAdapter<CharSequence> distirctList;
     @Override
@@ -126,11 +132,12 @@ private String[] myDataset={"$100或以下","地區"};
 
 
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.locationrecycler);
+        recyclerView= (RecyclerView) findViewById(R.id.locationrecycler);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         adapter = new MultiCheckGenreAdapter(makeMultiCheckGenres());
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(   new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
@@ -192,6 +199,38 @@ private String[] myDataset={"$100或以下","地區"};
                             rate.setText(String.valueOf(r)+"星");
                         }
                 }});
+        adapter.setOnGroupExpandCollapseListener(new GroupExpandCollapseListener() {
+            @Override
+            public void onGroupExpanded(ExpandableGroup group) {
+                Log.d("abc",String.valueOf(group.getItemCount()));
+            }
+
+            @Override
+            public void onGroupCollapsed(ExpandableGroup group) {
+                Log.d("abc","app");
+            }
+        });
+        adapter.setChildClickListener(new OnCheckChildClickListener() {
+            @Override
+            public void onCheckChildCLick(View v, boolean checked, CheckedExpandableGroup group,
+                                          int childIndex) {
+                Log.d("abc",group.getTitle()+" "+String.valueOf(childIndex));
+            }
+        });
+keyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+    public boolean onEditorAction(TextView v, int actionId,
+                                  KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_NEXT) {
+            keyword.clearFocus();
+            View view = getCurrentFocus();
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            return true;
+
+        }
+        return false;
+    }
+});
 
         Button submit=findViewById(R.id.smartsearchsubmit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -208,9 +247,9 @@ private String[] myDataset={"$100或以下","地區"};
                 while (y.hasNext()) {
                     builder.appendQueryParameter("categories",y.next().toString());
                 }
-                Log.d("msgg",builder.toString());
                 Intent intent = new Intent(getApplicationContext(), Result_Page_Activity.class);
                 try {
+
                     intent.putExtra("url", "?" + builder.toString().split("\\?")[1]);
 
                 }
@@ -234,6 +273,8 @@ private String[] myDataset={"$100或以下","地區"};
                 rate.setText("不限");
             }
         });
+
+
         ImageButton back=(ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

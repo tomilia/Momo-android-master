@@ -7,4 +7,5 @@
     <color name="lightGrey">#D3D3D3</color>
     <color name="text">#0D745C</color>
     <color name="starYellow">#FDE04A</color>
+    <color name="dark_grey">#ababab</color>
 </resources>

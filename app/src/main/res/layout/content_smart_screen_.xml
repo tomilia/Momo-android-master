@@ -126,7 +126,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
 
-                    android:text="haha"
+                    android:text="www"
                     android:background="@drawable/rectan_block_button"/>
                     <Button
                         android:id="@+id/catbut1"
@@ -136,7 +136,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
 
-                        android:text="haha"
+                        android:text="xxx"
                         android:background="@drawable/rectan_block_button"/>
                 </LinearLayout>
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -154,7 +154,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
 
-                        android:text="haha"
+                        android:text="yyy"
                         android:background="@drawable/rectan_block_button"/>
                     <Button
                         android:id="@+id/catbut3"
@@ -164,7 +164,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
 
-                        android:text="haha"
+                        android:text="zzz"
                         android:background="@drawable/rectan_block_button"/>
                 </LinearLayout>
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

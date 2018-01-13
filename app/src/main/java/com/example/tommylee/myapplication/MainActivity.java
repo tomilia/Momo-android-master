@@ -1,15 +1,15 @@
 package com.example.tommylee.myapplication;
 
-import android.app.Application;
-import android.app.DownloadManager;
+import android.net.Uri;
+import android.support.v4.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,12 +19,14 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.view.MenuItem;
 import android.support.v4.view.ViewPager;
+
+import com.example.tommylee.myapplication.settings.SettingFragment;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -39,21 +41,25 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingFragment.OnFragmentInteractionListener {
     private RecyclerView mRecyclerView;
+    private RecyclerView locationRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.Adapter mAdapter2;
+    private RecyclerView.Adapter locationAdapter;
+    private RecyclerView.LayoutManager locationLayoutManager;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.LayoutManager mLayoutManager2;
     private RecyclerView mRecyclerView2;
-    private ImageButton smartchoice;
+    private ArrayList<String> location;
     ViewPager viewPager;
     private ArrayList<DataFetch> mDataset;
     private ArrayList<DataFetch> mDataset2;
     LinearLayout dots;
     private int dotscount;
     private ImageView[] dotsview;
-    private Button mapcaller,searchbarbutton;
+    private ImageView mapcaller;
+    private ImageView searchbarbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +112,21 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
+            location=new ArrayList<>();
             mDataset = new ArrayList<>();
             mDataset2 = new ArrayList<>();
-
-
+            locationRecyclerView=(RecyclerView)findViewById(R.id.location_recycler_view);
+            locationRecyclerView.setHasFixedSize(true);
+location.add("sscs");
+location.add("saca");
+            location.add("sscs");
+            location.add("saca");
+            location.add("sscs");
+            location.add("saca");
+            locationLayoutManager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            locationRecyclerView.setLayoutManager(locationLayoutManager);
+            locationAdapter=new MainLocationAdapter(this,location);
+            locationRecyclerView.setAdapter(locationAdapter);
             mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
             mRecyclerView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -118,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(mLayoutManager);
             mAdapter = new MainAdapter(this, mDataset, 0);
             mRecyclerView.setAdapter(mAdapter);
-            Log.d("checkyo", "checked");
             mRecyclerView2 = (RecyclerView) findViewById(R.id.recycler_view2);
             mRecyclerView2.setHasFixedSize(true);
             mLayoutManager2 = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -128,17 +143,17 @@ public class MainActivity extends AppCompatActivity {
             mAdapter2 = new MainAdapter(this, mDataset2, 1);
             mRecyclerView2.setAdapter(mAdapter2);
 
-            mapcaller = (Button) findViewById(R.id.mapcaller);
+            searchbarbutton = (ImageView) findViewById(R.id.search_bar);
+            try {
 
-            mapcaller.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                    dialog.setMessage("基本訊息對話功能介紹");
-                    dialog.show();
+                Drawable d = (Drawable) getResources().getDrawable(R.drawable.mapdetail);
+
+            }catch (Exception e){
+                e.printStackTrace();
                 }
-            });
 
-            searchbarbutton = (Button)findViewById(R.id.search_bar);
+
+            searchbarbutton = (ImageView) findViewById(R.id.search_bar);
 
             searchbarbutton.setOnClickListener(new ImageButton.OnClickListener() {
                 public void onClick(View v) {
@@ -147,8 +162,32 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            bottomNavigationView.setOnNavigationItemSelectedListener(
+                    new BottomNavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.navigation_home:
+                                    Log.d("bnv","first");
+                                    return true;
+                                case R.id.navigation_map:
+                                    Log.d("bnv","two");
+                                    return true;
+                                case R.id.navigation_history:
+                                    Log.d("bnv","three");
+                                    return true;
+                                case R.id.navigation_setting:
+                                    SettingFragment settingFragment=new SettingFragment();
+                                    FragmentManager manager=getSupportFragmentManager();
+                                    manager.beginTransaction().replace(R.id.content,settingFragment,settingFragment.getTag()).commit();
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
         }
         }
+
     @Override
 
     public void onStop(){
@@ -266,5 +305,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         task.execute(id);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

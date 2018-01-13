@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:id="@+id/table">
 
         <TextView
             android:id="@+id/hot"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -27,19 +27,36 @@
             android:text="熱門①"
             android:textColor="#FF8000"
             android:textSize="20sp"/>
-        <com.adroitandroid.chipcloud.ChipCloud
-            android:id="@+id/chip_cloud"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/toolbar_shadow">
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group"
+                style="@style/TagGroup"
+                app:atg_borderColor="#0d745c"
+                app:atg_textColor="#0d745c"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                app:atg_verticalSpacing="8dp"
+                app:atg_borderStrokeWidth="1.5dp"
+                app:atg_horizontalPadding="15dp"
+                app:atg_verticalPadding="5dp"
+
+                app:atg_textSize="15dp"/>
+        </RelativeLayout>
 
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/table"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:id="@+id/table2">
@@ -54,6 +71,7 @@
             android:textColor="#FF8000"
             android:textSize="20sp"/>
         <ListView
+            android:layout_marginTop="5dp"
             android:id="@+id/resultrecent"
             android:layout_width="fill_parent"
             android:clickable="true"

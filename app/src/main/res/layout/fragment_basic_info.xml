@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/basicgreen"
-            android:background="@color/colorAccent"
+            android:background="#8EBF28"
             >
 
         <TextView
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="評分："
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimary"/>
             <View
                 android:layout_width="20dp"
                 android:layout_height="20dp"

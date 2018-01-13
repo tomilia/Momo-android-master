@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:contentInsetLeft="20dp"
+        app:contentInsetStart="20dp"
         >
 
 
@@ -21,75 +23,75 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:weightSum="1"
-            android:paddingTop="20dp"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/imageButton"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
-                android:layout_gravity="center"
+            >
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                android:layout_toEndOf="@+id/imageButton"
-                android:layout_toRightOf="@+id/imageButton"
-                android:layout_weight="1"
-                android:textColor="#229922"
-                android:text="MoMoCha"
-                android:typeface="sans"
-                android:textSize="24dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <LinearLayout
+                android:id="@+id/toolbar_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/mapcaller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/scanbutton" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="30dp">
+
+                    <ImageView
+                        android:id="@+id/search_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/searchbarselected" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="店舖搜尋"
+                        android:textColor="#acacac"
+                        android:drawableLeft="@drawable/magifyglass"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="2dp"/>
+                </RelativeLayout>
 
 
+            </LinearLayout>
+
+            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:showDividers="middle">
-
-            <Button
-                android:id="@+id/mapcaller"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="#FFFFFF"
-                android:drawableLeft="@drawable/route"
-                android:paddingLeft="20dp"
-                android:text="地圖模式"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="@dimen/activity_horizontal_margin" />
-            <View
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0.5dp"
-                android:layout_height="20dp"
-
-                android:background="@color/dark_grey" />
-            <Button
-                android:id="@+id/search_bar"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:drawableLeft="@drawable/searchin2"
-                android:paddingLeft="20dp"
-                android:onClick="SearchBtnGo"
-                android:text="店舖搜尋"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/activity_horizontal_margin" />
-
-
-        </LinearLayout>
+        <View android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/toolbar_top"
+            android:background="@drawable/toolbar_shadow"/>
 
     </android.support.design.widget.AppBarLayout>
    <include layout="@layout/content_main"/>
